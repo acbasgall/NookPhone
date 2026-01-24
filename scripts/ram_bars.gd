@@ -2,7 +2,7 @@ extends TextureProgressBar
 
 @export_group("Testing")
 @export var use_test_slider: bool = true
-@export_range(0, 100) var test_ram_free: float = 9
+@export_range(0, 100) var test_ram_free: float = 8
 
 func _process(_delta: float) -> void:
 	var ram_percent_free: float = 0.0
@@ -32,7 +32,7 @@ func _process(_delta: float) -> void:
 		self_modulate = Color("32cd32") # Green
 	elif ram_percent_free > 25:
 		value = 40              # <<< Gone
-		self_modulate = Color("ffd700") # Yellow
+		self_modulate = Color("ffaf4d") # Yellow
 	elif ram_percent_free > 10:
 		value = 20              # << Gone
 		self_modulate = Color("ff4500") # Red

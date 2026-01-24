@@ -13,6 +13,6 @@ func _process(_delta: float) -> void:
 	
 # The Sunset/Sunrise Logic (6 AM to 6 PM)
 	if time.hour >= 6 and time.hour < 18:
-		modulate = Color("98fb98") # Grassy Green (Daytime)
+		modulate = Color("279a00") # Dark Teal (Daytime)
 	else:
 		modulate = Color("87ceeb") # Sky Blue (Nighttime)

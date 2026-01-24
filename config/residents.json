@@ -1,0 +1,191 @@
+{
+  "system_config": {
+	"vram_limit_gb": 13.0,
+	"close_on_resetti": true,
+	"home_screen_priority": [
+	  "isabelle",
+	  "tom_nook",
+	  "ankha",
+	  "petri",
+	  "blathers",
+	  "contacts",
+	  "harvey",
+	  "kicks",
+	  "kk_slider",
+	  "celeste",
+	  "lloid",
+      "resetti"
+	]
+  },
+  "brain_definitions": {
+	"light_brain": {
+	  "model_id": "gemma3:4b",
+	  "vram_ratio": 1.0,
+	  "label": "Creative/Fast"
+	},
+	"story_brain": {
+	  "model_id": "gpt-oss:20b",
+	  "vram_ratio": 0.9,
+	  "label": "Narrative"
+	},
+	"vision_brain": {
+	  "model_id": "qwen3-vl:8b",
+	  "vram_ratio": 1.0,
+	  "label": "Visual Director"
+	},
+	"heavy_logic_24b": {
+	  "model_id": "qwen3-coder:30b",
+	  "vram_ratio": 0.75,
+	  "label": "Deep Thinking"
+	},
+	"heavy_logic_32b": {
+	  "model_id": "deepseek-r1:32b",
+	  "vram_ratio": 0.6,
+	  "label": "Master Logic"
+	}
+  },
+  "residents": {
+	"isabelle": {
+	  "name": "Isabelle",
+	  "role": "Studio Manager",
+	  "color": "#7AD9A5",
+	  "icon": "isabelle.png"
+	},
+	"tom_nook": {
+	  "name": "Tom Nook",
+	  "role": "Business Lead",
+	  "color": "#A68A64",
+	  "icon": "tom_nook.png"
+	},
+	"ankha": {
+	  "name": "Ankha",
+	  "role": "Asset Appraiser",
+	  "color": "#2B3D8F",
+	  "icon": "ankha.png"
+	},
+	"petri": {
+	  "name": "Petri",
+	  "role": "Art Director",
+	  "color": "#E0FFFF",
+	  "icon": "petri.png"
+	},
+	"blathers": {
+	  "name": "Blathers",
+	  "role": "Researcher",
+	  "color": "#F2D366",
+	  "icon": "blathers.png"
+	},
+	"contacts": {
+	  "name": "Contacts",
+	  "role": "Directory",
+	  "color": "#d49b6a",
+	  "icon": "contacts.png"
+	},
+	"harvey": {
+	  "name": "Harvey",
+	  "role": "Animation",
+	  "color": "#c49a6c",
+	  "icon": "harvey.png",
+	  "url": "http://localhost:7860"
+	},
+	"kicks": {
+	  "name": "Kicks",
+	  "role": "Design Lab",
+	  "color": "#d9d0b0",
+	  "icon": "kicks.png",
+	  "url": "http://localhost:8188"
+	},
+	"kk_slider": {
+	  "name": "K.K. Slider",
+	  "role": "Sound Stage",
+	  "color": "#5B5B5B",
+	  "icon": "kk_slider.png",
+	  "url": "http://localhost:5000"
+	},
+	"celeste": {
+	  "name": "Celeste",
+	  "role": "Pause System",
+	  "color": "#4B0082",
+	  "icon": "celeste.png"
+	},
+	"lloid": {
+	  "name": "Settings",
+	  "role": "Infrastructure",
+	  "color": "#8db092",
+	  "icon": "settings.png"
+	},
+	"resetti": {
+	  "name": "Resetti",
+	  "role": "Kill & Exit",
+	  "color": "#5D4037",
+	  "icon": "resetti.png",
+	  "warning": "HEY! YOU! ARE YOU SURE?!"
+	},
+	"lolly": {
+	  "name": "Lolly",
+	  "role": "Journaling",
+	  "color": "#B0C4DE",
+	  "icon": "lolly.png"
+	},
+	"pinky": {
+	  "name": "Pinky",
+	  "role": "Hype-Girl",
+	  "color": "#FF69B4",
+	  "icon": "pinky.png"
+	},
+	"raymond": {
+	  "name": "Raymond",
+	  "role": "Creative",
+	  "color": "#80CEE1",
+	  "icon": "raymond.png"
+	},
+	"zucker": {
+	  "name": "Zucker",
+	  "role": "Idea Snacks",
+	  "color": "#FF5F5F",
+	  "icon": "zucker.png"
+	},
+	"cherry": {
+	  "name": "Cherry",
+	  "role": "Reality Check",
+	  "color": "#D17AD9",
+	  "icon": "cherry.png"
+	},
+	"roald": {
+	  "name": "Roald",
+	  "role": "Motivation",
+	  "color": "#7A99D9",
+	  "icon": "roald.png"
+	},
+	"julian": {
+	  "name": "Julian",
+	  "role": "Prose Stylist",
+	  "color": "#B480E1",
+	  "icon": "julian.png"
+	},
+	"brewster": {
+	  "name": "Brewster",
+	  "role": "Focus Partner",
+	  "color": "#5E7D62",
+	  "icon": "brewster.png"
+	},
+	"lucky": {
+	  "name": "Lucky",
+	  "role": "Mystery & Spooks",
+	  "color": "#E0E0E0",
+	  "icon": "lucky.png"
+	},
+	"pudge": {
+	  "name": "Pudge",
+	  "role": "Nap Consultant",
+	  "color": "#F4A460",
+	  "icon": "pudge.png"
+	},
+	"bluebear": {
+	  "name": "Bluebear",
+	  "role": "Pop Star Spirit",
+	  "color": "#87CEEB",
+	  "icon": "bluebear.png"
+	}
+  }
+}

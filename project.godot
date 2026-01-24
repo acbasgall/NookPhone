@@ -11,9 +11,16 @@ config_version=5
 [application]
 
 config/name="NookPhone"
-run/main_scene="res://nook_phone.tscn"
+run/main_scene="res://scenes/nook_phone.tscn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+ConfigLoader="*res://scripts/config_loader.gd"
+OllamaInterface="*res://scripts/ollama_interface.gd"
+BrainManager="*res://scripts/brain_manager.gd"
+ResidentManager="*res://scripts/resident_manager.gd"
 
 [display]
 
