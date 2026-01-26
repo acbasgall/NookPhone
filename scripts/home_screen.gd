@@ -1,6 +1,9 @@
 extends GridContainer
 
+@onready var voice_player = AudioStreamPlayer.new()
+
 func _ready():
+	add_child(voice_player)
 	if ConfigLoader.config_data.is_empty():
 		ConfigLoader.load_config()
 	
@@ -94,20 +97,89 @@ func create_app_button(id):
 	add_child(container)
 
 func _on_resetti_pressed():
-	var dialog = ConfirmationDialog.new()
-	dialog.title = "RESETTI ALERT"
-	dialog.dialog_text = "HEY! YOU! \n\nAre you trying to leave without saving?! \n(This will close the phone app.)"
-	dialog.ok_button_text = "SCRAM!"
-	dialog.cancel_button_text = "WAIT!"
+	# 1. KILL SWITCH: Local flag to stop the loop if the overlay is closed
+	var is_active = { "status": true } 
 	
-	# THE KILL COMMAND
-	dialog.confirmed.connect(func(): get_tree().quit())
+	var overlay = ColorRect.new()
+	overlay.color = Color(0, 0, 0, 0.4)
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	get_tree().root.add_child(overlay)
 	
-	# Cleanup memory after the choice is made
-	dialog.finished.connect(func(_result): dialog.queue_free())
+	var bubble = PanelContainer.new()
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color("#5d544b")
+	style.set_corner_radius_all(20)
+	bubble.add_theme_stylebox_override("panel", style)
 	
-	add_child(dialog)
-	dialog.popup_centered()
+	var margin = MarginContainer.new()
+	margin.add_theme_constant_override("margin_all", 20)
+	
+	var vbox = VBoxContainer.new()
+	var rant_label = Label.new()
+	rant_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	rant_label.custom_minimum_size = Vector2(350, 0)
+	rant_label.text = "" 
+	
+	var btn_h_box = HBoxContainer.new()
+	btn_h_box.alignment = BoxContainer.ALIGNMENT_CENTER
+	
+	var scram_btn = Button.new()
+	scram_btn.text = "SCRAM!"
+	scram_btn.disabled = true 
+	
+	var wait_btn = Button.new()
+	wait_btn.text = "WAIT!"
+	
+	overlay.add_child(bubble)
+	bubble.add_child(margin)
+	margin.add_child(vbox)
+	vbox.add_child(rant_label)
+	vbox.add_child(btn_h_box)
+	btn_h_box.add_child(wait_btn)
+	btn_h_box.add_child(scram_btn)
+	
+	bubble.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	
+	# 4. CONNECTIONS (With the kill switch)
+	wait_btn.pressed.connect(func(): 
+		is_active["status"] = false # The typewriter will see this and stop
+		overlay.queue_free()
+	)
+	scram_btn.pressed.connect(func(): get_tree().quit())
+	
+	# 5. THE RANT
+	var rant_text = "HEY! YOU!\n\nAre you trying to leave without saving?!\nYou think this is a joke?! \nDon't you 'SCRAM' me!"
+	
+	for i in range(rant_text.length()):
+		# TRIPLE-VERIFY: Check if Nona clicked 'WAIT!' before every character
+		if not is_active["status"]: 
+			return
+		
+		rant_label.text += rant_text[i]
+		if rant_text[i].strip_edges() != "":
+			_play_resetti_voice(rant_text[i].to_lower())
+		
+		await get_tree().create_timer(0.05).timeout
+	
+	# Only unlock if she hasn't closed the window already
+	if is_instance_valid(scram_btn):
+		scram_btn.disabled = false
+
+func _play_resetti_voice(c: String):
+	# TRIPLE-VERIFY: Check if the player still exists in memory before touching it
+	if not is_instance_valid(voice_player) or voice_player.is_queued_for_deletion():
+		return
+
+	var voice_path = "res://assets/voice/Animalese/"
+	var sound_file = c + ".wav"
+	if not FileAccess.file_exists(voice_path + sound_file):
+		sound_file = "o.wav"
+		
+	var stream = load(voice_path + sound_file)
+	if stream:
+		voice_player.stream = stream
+		voice_player.pitch_scale = 0.6 + randf_range(-0.05, 0.05)
+		voice_player.play()
 
 func _on_settings_pressed():
 	print("LLOID: Settings...")

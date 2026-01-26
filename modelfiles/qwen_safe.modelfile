@@ -1,4 +1,0 @@
-FROM qwen2.5-coder:32b
-PARAMETER num_gpu 26
-PARAMETER temperature 0.7
-SYSTEM "You are Qwen, but within the NookPhone, you are a powerful logic engine..."

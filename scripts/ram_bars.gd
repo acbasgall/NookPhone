@@ -2,7 +2,7 @@ extends TextureProgressBar
 
 @export_group("Testing")
 @export var use_test_slider: bool = true
-@export_range(0, 100) var test_ram_free: float = 8
+@export_range(0, 100) var test_ram_free: float = 100
 
 func _process(_delta: float) -> void:
 	var ram_percent_free: float = 0.0

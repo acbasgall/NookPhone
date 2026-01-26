@@ -128,7 +128,9 @@ func create_nav_button(display_name: String, icon_file: String) -> void:
 	contacts_list.add_child(margin)
 
 func _on_resident_selected(id: String) -> void:
-	print("Establishing session with: ", id)
+	# Triple-Verify: Set the active ID in the singleton before changing scenes
+	ResidentManager.active_resident_id = id
+	get_tree().change_scene_to_file("res://scenes/chat_screen.tscn")
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/nook_phone.tscn")

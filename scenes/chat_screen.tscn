@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://btrig2vm8tja2"]
+
+[ext_resource type="Texture2D" uid="uid://d0qdsf6h52iup" path="res://assets/icons/cellular_status.png" id="1_oyvjx"]
+[ext_resource type="Script" uid="uid://bm062ewxjj8tj" path="res://scenes/chat_screen.gd" id="1_s7ika"]
+[ext_resource type="Script" uid="uid://bl44hokcr4mni" path="res://scripts/ram_bars.gd" id="2_s7ika"]
+[ext_resource type="AudioStream" uid="uid://srl0ansqy4sy" path="res://assets/voice/Animalese/o.wav" id="3_oe24n"]
+[ext_resource type="Script" uid="uid://b2qoma501hkdo" path="res://scripts/time_label.gd" id="4_1cpni"]
+[ext_resource type="Texture2D" uid="uid://dfn23na30bf2d" path="res://assets/icons/location_status.png" id="5_ag6lx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7ika"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6665704, 0.58921623, 0.9242904, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="chat_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_s7ika")
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 450.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6040461, 0.71070474, 1, 1)
+
+[node name="vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 450.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="status_bar" type="HBoxContainer" parent="vbox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="RAMBars" type="TextureProgressBar" parent="vbox/status_bar"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 20.0
+nine_patch_stretch = true
+texture_progress = ExtResource("1_oyvjx")
+script = ExtResource("2_s7ika")
+
+[node name="PanicSound" type="AudioStreamPlayer2D" parent="vbox/status_bar/RAMBars"]
+stream = ExtResource("3_oe24n")
+
+[node name="TimeLabel" type="Label" parent="vbox/status_bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "12:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_1cpni")
+
+[node name="LocationIcon" type="TextureRect" parent="vbox/status_bar"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("5_ag6lx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="header" type="HBoxContainer" parent="vbox"]
+layout_mode = 2
+
+[node name="portrait" type="TextureRect" parent="vbox/header"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="resident_name" type="Label" parent="vbox/header"]
+layout_mode = 2
+
+[node name="scroll_container" type="ScrollContainer" parent="vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="chat_log" type="VBoxContainer" parent="vbox/scroll_container"]
+layout_mode = 2
+
+[node name="input_area" type="HBoxContainer" parent="vbox"]
+layout_mode = 2
+
+[node name="message_input" type="LineEdit" parent="vbox/input_area"]
+layout_mode = 2
+theme_override_constants/minimum_character_width = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_s7ika")
+
+[node name="send_button" type="Button" parent="vbox/input_area"]
+layout_mode = 2
+
+[node name="animalese_speech" type="AudioStreamPlayer" parent="."]

@@ -1,4 +1,0 @@
-FROM mistral-small:24b
-PARAMETER num_gpu 30
-PARAMETER temperature 0.3
-SYSTEM "You are a refined assistant within the NookPhone..."
